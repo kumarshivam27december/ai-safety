@@ -31,7 +31,6 @@ const incidentSchema = new mongoose.Schema({
   toObject: { virtuals: true }
 });
 
-// Add text index for search functionality
 incidentSchema.index({ title: 'text', description: 'text' });
 
 const Incident = mongoose.model('Incident', incidentSchema);
