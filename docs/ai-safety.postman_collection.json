@@ -1,0 +1,44 @@
+{
+	"info": {
+		"_postman_id": "d1917411-8cd5-4c5f-9789-d0b71bec7ee3",
+		"name": "ai-safety",
+		"description": "This collection serves as a tool to document and analyze potential safety incidents or failure modes observed in various AI systems. By cataloging these occurrences, we aim to better understand the risks and vulnerabilities associated with AI, ultimately contributing to the development of more robust and reliable AI technologies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43289596"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"title\": \"Data Access without permission\",\n        \"description\": \"AI system should not access user data without permission\",\n        \"severity\": \"Low\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/api/incidents/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"incidents",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

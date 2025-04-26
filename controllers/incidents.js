@@ -96,23 +96,22 @@ const updateIncident = async (req, res, next) => {
 // @route   DELETE /api/incidents/:id
 // @access  Public
 const deleteIncident = async (req, res, next) => {
-  try {
-    const incident = await Incident.findByIdAndDelete(req.params.id);
-    
-    if (!incident) {
-      return res.status(StatusCodes.NOT_FOUND).json({
-        success: false,
-        message: `No incident found with id ${req.params.id}`
-      });
-    }
-
-    res.status(StatusCodes.NO_CONTENT).json({  // Fixed typo here
-      success: true,
-      data: null
-    });
-  } catch (err) {
-    next(err);
-  }
+	try {
+	  const incident = await Incident.findByIdAndDelete(req.params.id);
+	  if (!incident) {
+		return res.status(StatusCodes.NOT_FOUND).json({
+		  success: false,
+		  message: `No incident found with id ${req.params.id}`
+		});
+	  }
+	  // 200 response with confirmation
+	  res.status(StatusCodes.OK).json({  // ✅
+		success: true,
+		message: "Incident deleted successfully"
+	  });
+	} catch (err) {
+	  next(err);
+	}
 };
 
 module.exports = {
