@@ -1,10 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const Incident = require('../models/Incidents');
-
-// @desc    Get all incidents
-// @route   GET /api/incidents
-// @access  Public
-const getAllIncidents = async (req, res, next) => {  // Added next parameter
+const getAllIncidents = async (req, res, next) => {  
   try {
     const incidents = await Incident.find().sort('-reported_at');
     res.status(StatusCodes.OK).json({
@@ -16,10 +12,6 @@ const getAllIncidents = async (req, res, next) => {  // Added next parameter
     next(err);
   }
 };
-
-// @desc    Create new incident
-// @route   POST /api/incidents
-// @access  Public
 const createIncident = async (req, res, next) => {
   try {
     const { title, description, severity } = req.body;
@@ -39,9 +31,6 @@ const createIncident = async (req, res, next) => {
   }
 };
 
-// @desc    Get single incident
-// @route   GET /api/incidents/:id
-// @access  Public
 const getIncident = async (req, res, next) => {
   try {
     const incident = await Incident.findById(req.params.id);
@@ -62,9 +51,6 @@ const getIncident = async (req, res, next) => {
   }
 };
 
-// @desc    Update incident
-// @route   PUT /api/incidents/:id
-// @access  Public
 const updateIncident = async (req, res, next) => {
   try {
     const incident = await Incident.findByIdAndUpdate(
@@ -92,9 +78,6 @@ const updateIncident = async (req, res, next) => {
   }
 };
 
-// @desc    Delete incident
-// @route   DELETE /api/incidents/:id
-// @access  Public
 const deleteIncident = async (req, res, next) => {
 	try {
 	  const incident = await Incident.findByIdAndDelete(req.params.id);
@@ -104,8 +87,7 @@ const deleteIncident = async (req, res, next) => {
 		  message: `No incident found with id ${req.params.id}`
 		});
 	  }
-	  // 200 response with confirmation
-	  res.status(StatusCodes.OK).json({  // ✅
+	  res.status(StatusCodes.OK).json({  
 		success: true,
 		message: "Incident deleted successfully"
 	  });
@@ -118,6 +100,6 @@ module.exports = {
   getAllIncidents,
   createIncident,
   getIncident,
-  updateIncident,  // Added to exports
+  updateIncident,  
   deleteIncident
 };
