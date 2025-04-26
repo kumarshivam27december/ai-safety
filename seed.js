@@ -1,4 +1,3 @@
-// seed.js
 const mongoose = require('mongoose');
 const Incident = require('./models/Incidents');
 require('dotenv').config();
